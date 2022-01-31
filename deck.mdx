@@ -7,9 +7,11 @@ import SoloEditor from "./components/solo-editor";
 import { Logo } from "./components/shared";
 import reactUsage from "./assets/react-usage.png";
 
+
 import baseTheme from "./theme";
 
 export const theme = baseTheme;
+
 
 <Head>
   <title>Slides | Intro to React</title>
@@ -36,6 +38,18 @@ export const theme = baseTheme;
 
 ---
 
+# Questions?
+
+<iframe width="1000" height="800" src="https://docs.google.com/document/d/1iAtutIgh8L-WSi6TaURiAmq_S5yglduQCNx3x9qI29o/edit#"></iframe>
+
+<Notes>
+
+If you have any questions throughout lecture and you want to make sure they don't get lost in the chat, feel free to add them to this google doc and let me know! We'll come back and take a look at it together and fill in some answers and notes.
+
+</Notes>
+
+---
+
 <!-- Begin Slide -->
 
 <Layout>
@@ -53,6 +67,18 @@ We'll learn...
 </Steps>
 
 </Layout>
+
+<Notes>
+
+Our goal today will be to talk about ⬇️ 
+
+- Why you should learn react ⬇️ 
+
+- A bit about React's philosophy ⬇️ 
+
+- and a high level discussion of how React works
+
+</Notes>
 
 <!-- End Slide -->
 
@@ -99,9 +125,11 @@ Particularly when it comes to:
 
 <Notes>
 
+Beyond its popularity... let's talk about some more reasons react is a good tool to use.
+
 Some of the main challenges in building vanilla JS projects have to do with keeping the DOM up to date and keeping organized as the codebase grows.
 
-- If you struggled with those things, you're not alone! These are hard problems, and something JS developers have struggled with for a long time
+- If you struggled with those things while you were working on your project, you're not alone! These are hard problems, and something JS developers have struggled with for a long time
 - React gives us code to solve these problems by _abstracting_ the work of manipulating the DOM
 - It also has strong opinions about how your code should be organized
   - If you "buy into" React's philosophy, you're gonna have a good time with React...
@@ -119,14 +147,28 @@ Some of the main challenges in building vanilla JS projects have to do with keep
 
 # 💡 React Philosophy
 
-- Uses **declarative syntax (JSX)**
+- Use **declarative syntax (JSX)**
   - Makes it easier to work with the DOM
   - Clearer connection between the code we write and what is displayed in the browser
-- Break down complex UI into smaller **components**
+- Use **components** to break down complex UI into smaller pieces
   - Separation of concerns
   - Easier to maintain
 
 </Layout>
+
+<Notes>
+
+One of the key elements of React's philosophy is the use of declarative syntax.
+
+React introduced the syntax called JSX (short for javascript XML) that
+- makes it easier to work with the DOM
+- establishes a clearer connection between the code we write and what is actually displayed in the browser
+
+Another key idea in React's philosophy is to use Components to break down a complex UI into smaller and more manageable pieces.
+
+This also helps us with separation of conerns and makes our codebase easier to maintain and organize as it grows.
+
+</Notes>
 
 <!-- End Slide -->
 
@@ -137,6 +179,8 @@ Some of the main challenges in building vanilla JS projects have to do with keep
 <Layout>
 
 # 🎉 Declarative Syntax
+
+<iframe height="260" width="1000" src="https://docs.google.com/document/d/1nPeQ0bahVgfDKag2QB9ztRsIRs0NDAqJ9tCkeBt2iI8/edit"></iframe>
 
 <Steps>
 
@@ -177,10 +221,12 @@ const h1 = (
 
 <Notes>
 
-Has anyone heard about declarative coding vs imperative code?
+(This slide has code examples that can be revealed with down arrows.)
 
-- Ask for an example
-- Chipotle analogy: ordering a burrito vs making one by hand
+When we see the word Declarative, what does that mean? When we think of the difference between declarative and imperative code, who can describe to me or give me an example of that difference? 
+
+- (wait for and explore examples)
+- Chipotle analogy: ordering a burrito vs making one by hand (outsourcing in general)
 
 Declarative code lets us write something more _abstract_.
 
@@ -208,6 +254,20 @@ Under the hood, React apps use a tool called Babel to **transpile** the JSX synt
 </Steps>
 
 </Layout>
+
+<Notes>
+
+Under the hood, React apps use a tool called Babel to **transpile** the JSX syntax to valid JavaScript:
+
+(Use arrows to reveal...)
+- We write JSX
+- Babel **transpiles** JSX into valid JavaScript
+- That **transpiled** code is what actually runs in the browser
+
+Just a quick **Note**: JSX and Babel are tools that exist within the javascript ecosystem, both are usable outside of React as well.
+
+For an example of how this works -> Next Slide
+</Notes>
 
 <!-- End Slide -->
 
@@ -245,6 +305,7 @@ But after Babel is done with it, it's now valid syntax.
 You don't have to worry too much about this; you can just use JSX in React without thinking about it.
 But it's good to know what's happening. At the end of the day, it's all still JavaScript.
 
+Again, details of this are not important to remember, but you do want to remember that JSX requires transpilation via babel in order to run in the browser. If you're using the create-react-app generator, then all of this is already configured for you up front, including a live updating development server!
 </Notes>
 
 <!-- End Slide -->
@@ -279,6 +340,20 @@ function Header(props) {
 
 </Layout>
 
+<Notes>
+
+Components are the building blocks of React!
+
+Simply put, a component is a function that:
+
+- takes in some raw data (in the form of an object that we call props)
+- and returns some JSX (to render part of our user interface)
+
+You can see here that we have a function called `Header` that takes an argument called props and returns a JSX element, in this case a div, including the title and subtitle properties from the `props` argument. So let's take a closer look at this.
+
+
+</Notes>
+
 <!-- End Slide -->
 
 ---
@@ -299,6 +374,10 @@ function Header(props) {
   );
 }
 
+// <Header title="Let's Learn React" subtitle="Components" />
+// is equivalent to
+// Header({title: "Let's Learn React", subtitle: "Components"})
+
 ReactDOM.render(
   <Header title="Let's Learn React" subtitle="Components" />,
   document.getElementById("root")
@@ -311,19 +390,21 @@ ReactDOM.render(
 
 <Notes>
 
-Here's an example of a React component in code. On the left is the code we write.
-On the right is the HTML that the browser renders.
+Here's an example of a live editor within the slideshow (all possible because of React!) On the left is the code we write.
+On the right is a preview of the rendered HTML on top and the HTML code that the browser actually renders on the bottom.
 
 Think of a component like a **template** for how we want to display some data.
 
-As React developers, your job is to take some raw data (a string, an object, an array, etc) and decide
+As React developers, our job is to take some raw data (a string, an object, an array, etc) and decide
 how a user should interact with that data (how it should be displayed on the page).
 
-Components are what make this possible!
+Components are what make that possible!
 
 The syntax might take some getting used to, but remember, in the end it's all just JavaScript.
 Think of writing `<Header props="something">` like us telling React to call the function `Header`,
 and pass one argument of an object with key-value pairs. (we could even write it out this way and it'd still work)
+
+Let's try adding a prop for Category here.
 
 </Notes>
 
@@ -346,6 +427,8 @@ and pass one argument of an object with key-value pairs. (we could even write it
 </Layout>
 
 <Notes>
+
+Now, let's take a moment to talk about Component Composition
 
 The last example we saw was a simple React component, but a typical React app can have dozens or even hundreds of components.
 The great thing about components is that we can **compose** them (make them work together) to put together complex layouts.
@@ -409,7 +492,34 @@ is responsible for providing its data.
 
 We're _reusing_ the Comment component to make a couple of `<p>` tags, each with their own content.
 
+Within ReactDOM.render(), we're rendering the Article component which in turn renders the appropriate comments. When we speak of this parent child relationship, we'll be using that metaphor much like we did for DOM nodes within JS. So, the parent component is the one that renders its children. A child component is rendered by its parent.
+
+In this case, when we use the term render, we mean that the component renders the JSX we're referring to. Remember that all of our components are javascript functions, so when one component returns JSX including another component, that rendering component is the parent component and the component included in that parent is called the child component.
+
+I want to pause for a moment and ask y'all if there's anything you'd like to try here or ask about or discuss more.
+
 </Notes>
+
+<!-- End Slide -->
+
+---
+
+<!-- Begin Slide -->
+
+# Understanding ReactDOM.render()
+
+<Steps>
+
+- What does `ReactDOM.render()` do?
+
+- --> inserts a react element into the DOM 
+
+- How do the arguments we pass to `ReactDOM.render()` accomplish this?
+
+- --> the first argument is the react element we'd like to render to the DOM (JSX)
+- --> the second argument is the DOM node where we want to insert that react element
+
+</Steps>
 
 <!-- End Slide -->
 
@@ -434,10 +544,12 @@ We're _reusing_ the Comment component to make a couple of `<p>` tags, each with 
 <Notes>
 
 Your objective during week 1 of React is to learn the fundamentals of React to make a single-page application.
-We'll be building something similar to what you made in Phase 3, but with a new set of tools to make that process easier.
+We'll be building something similar to what you made in Phase 1, but with a new set of tools to make that process easier.
 
 Learning this will be challenging because you'll need to learn new syntax, as well as learning a new philosophy for how to organize your code.
-And since at the end of the day, React is still JavaScript, you'll need your sharpest JS skills to become great React developers.
+And, since at the end of the day, React is still JavaScript, you'll need your sharpest JS skills to become great React developers.
+
+Eventually, we'll again be stitching together those three pillars of javascript within our react application to:  (use arrow keys to expand)
 
 Right now, the most important thing is to start writing code, so in the next part of the lecture we'll get into a little exercise
 to practice with components, JSX and props.
@@ -448,15 +560,78 @@ to practice with components, JSX and props.
 
 ---
 
+# The ToyTale Exercise
+
+<iframe src="https://codesandbox.io/embed/adoring-clarke-138zs?view=preview"
+    style={{width:'70%', height:'800px', border:0, borderRadius: '4px',overflow:'hidden'}}
+    title="adoring-clarke-138zs"
+    allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+    sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+  ></iframe>
+
+<Notes>
+
+So, our exercise today is going to be to rework the HTML and JS for the Toy Tale practice code challenge so that it works within React.
+
+Here's a little preview of what we'll be working towards for the day. When our work is complete, we'll have something like this running within our dev server. So, we'll be able to see all of the toys displayed on the page. The form to add a new toy isn't going to work today, but that's okay, it's not the focus for today!
+
+The starter code in the repository is based on the html from the code challenge and still has some html in it that isn't JSX friendly. So, part of your task for the day will be to use your knowledge of how JSX differs from HTML to refactor the HTML to be valid JSX. 
+
+</Notes>
+
+---
+
+# Exercise Instructions
+
+- Fork and Clone the cohort repo
+  - Navigate to 01_intro_to_react/toy_tale_react and run `npm start`
+- Activity #1: Convert HTML to JSX within src/App.js
+    - What needs to change? What's the same? 
+    - After fixing any errors in the console, use comments to begin to map out JSX elements into into separate components. No need to actually create components now, just start thinking about what pieces of JSX could be split into their own components.
+- Take 5-7 minutes for this on your own and then we'll go through it together mob-programming style
+
+
+---
+
+# Exercise Instructions
+
+- Activity #2: Implement a ToyCard Component
+    - Start by hard-coding the JSX in your App component return statement
+    - Use props to make your component reusable
+    - Copy/paste data from the "toys.js" file as props and iterate over Toy objects
+      to create a ToyCard component for each one
+    - BONUS: 
+      - Import and store data from the "toys.js" file
+      - Create a "components" subdirectory + "ToyCard.js" file
+- Take 10 minutes for this on your own, feel free to ask questions as you go and then we'll review together.
+
+---
+
+# Recap of Key Skills
+
+- Use ReactDOM.render() to add JSX elements to the DOM
+- Use Components as a way of separating UI concerns splitting UI into smaller reusable pieces
+- Use JSX to render HTML elements &amp; other React components
+
+---
+
 <!-- Begin Slide -->
 
 <Layout>
 
 # 🤔 Questions?
 
+<iframe width="1000" height="800" src="https://docs.google.com/document/d/1iAtutIgh8L-WSi6TaURiAmq_S5yglduQCNx3x9qI29o/edit#"></iframe>
+
 </Layout>
 
 <!-- End Slide -->
+
+---
+
+# Installing and Using the React Developer Tools
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/fXRB6wgeKOo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 

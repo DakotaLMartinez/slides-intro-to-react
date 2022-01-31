@@ -1,12 +1,14 @@
 import React from "react";
 import { useDeck } from "mdx-deck";
 import styled from "styled-components";
+import CustomizePresenterView from "./customize-presenter-view";
 
 function Layout({ children }) {
   return (
     <Wrapper>
       {children}
       <Navigator />
+      <CustomizePresenterView />
     </Wrapper>
   );
 }
