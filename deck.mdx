@@ -299,13 +299,14 @@ In this window, the left-hand side is JSX (JavaScript XML). It looks like HTML, 
 This is a special kind of markup that we use to tell React how we want the DOM to look.
 
 We write JSX in our JavaScript files, and under the hood, Babel turns it into valid JavaScript
-code before the browser runs it. If tried running the code on the left in the browser you'd get a syntax error.
+code before the browser runs it. If we tried running the code on the left in the browser we'd get a syntax error.
 But after Babel is done with it, it's now valid syntax.
 
 You don't have to worry too much about this; you can just use JSX in React without thinking about it.
 But it's good to know what's happening. At the end of the day, it's all still JavaScript.
 
-Again, details of this are not important to remember, but you do want to remember that JSX requires transpilation via babel in order to run in the browser. If you're using the create-react-app generator, then all of this is already configured for you up front, including a live updating development server!
+Again, the details of this are not important to remember, but you do want to remember that JSX requires transpilation via babel in order to run in the browser. If you're using the create-react-app generator, then all of this is already configured for you up front, including a live updating development server!
+
 </Notes>
 
 <!-- End Slide -->
@@ -374,9 +375,9 @@ function Header(props) {
   );
 }
 
-// <Header title="Let's Learn React" subtitle="Components" />
+// <Header title="Let's Learn React" subtitle="Components as JSX" />
 // is equivalent to
-// Header({title: "Let's Learn React", subtitle: "Components"})
+// Header({title: "Let's Learn React", subtitle: "Components as function calls"})
 
 ReactDOM.render(
   <Header title="Let's Learn React" subtitle="Components" />,
@@ -485,7 +486,7 @@ ReactDOM.render(
 <Notes>
 
 Here's an example of what the code looks like for composing multiple components together.
-An article can have many comments, so the we're using the Comment component within the Article component.
+An article can have many comments, so we're using the Comment component within the Article component.
 
 Each component is responsible for its own template, but its "parent" (whichever component returns it)
 is responsible for providing its data.
